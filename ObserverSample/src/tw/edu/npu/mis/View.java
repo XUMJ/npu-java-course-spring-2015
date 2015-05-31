@@ -43,6 +43,7 @@ public class View {
     }
 
     /**
+     * 
      * Invalidate the view, which indicates it needs to be redrawn later.
      */
     public void invalidate() {
@@ -50,7 +51,7 @@ public class View {
     }
 
     /**
-     * Show the content of the model on the console.
+     * Show 該model的控制台上的內容.
      */
     public void onDraw() {
         System.out.println("View (" + mName + "): " + mModel.getData());

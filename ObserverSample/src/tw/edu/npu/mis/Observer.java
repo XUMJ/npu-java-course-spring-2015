@@ -26,7 +26,7 @@
 package tw.edu.npu.mis;
 
 /**
- *
+ *用來擷取Observer 在更新
  * @author ASUS
  */
 public interface Observer {

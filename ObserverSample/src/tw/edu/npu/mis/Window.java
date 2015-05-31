@@ -39,17 +39,18 @@ public class Window {
     private List<View> mInvalidViews;
 
     /**
-     * Start the event loop.
-     *
-     * @param c The controller.
-     * @param views The views to draw on the first loop.
+     * 啟動事件 使它循環
+     * @param c 給控制元件命名.
+     * @param views 給予views利用第一個循環 
      */
     public void startEventLoop(Controller c, List<View> views) {
         mController = c;
         mInvalidViews = new ArrayList<>(views);
 
-        // Simulate how an event loop works.
-        while (true) {
+       /**
+        * 模擬一個事件環如何工作 .
+        */
+            while (true) {
             mController.readInput();
             for (View v : mInvalidViews) {
                 v.onDraw();
@@ -59,8 +60,7 @@ public class Window {
     }
 
     /**
-     * Add a view to a queue for redraw on screen later.
-     *
+     *新增 view 讓 queue 重劃在稍後螢幕上顯示 
      * @param v View to redraw.
      */
     public void schduleRedraw(View v) {

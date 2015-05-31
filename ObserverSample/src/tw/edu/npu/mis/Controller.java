@@ -29,8 +29,6 @@ import java.util.Scanner;
 
 /**
  * {@link Controller} retrieves inputs from the user.
- *
- * @author Samael Wang <freesamael@gmail.com>
  */
 public class Controller {
 
@@ -41,7 +39,7 @@ public class Controller {
     }
 
     /**
-     * Read input and update model accordingly.
+     * 讀取輸入的訊息從而更新 model
      */
     public void readInput() {
         System.out.print("Controller: ");

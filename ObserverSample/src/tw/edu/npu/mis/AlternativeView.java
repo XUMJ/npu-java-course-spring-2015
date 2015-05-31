@@ -1,34 +1,61 @@
-/*
- * Copyright (c) 2015, ASUS
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- * * Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
+
 package tw.edu.npu.mis;
+
 
 /**
  *
  * @author ASUS
+ * implements obserer
+ * 新增觀察者跟被觀察者
  */
-public class AlternativeView {
-    
-}
+public  class AlternativeView implements Observer {
+    private final Model mModel;
+    private boolean mIsValid;
+   
+    private final String mName;
+    private final Window mWindow;
+    private String s="";
+    /**
+     * AlternatioveView建構值
+     * @param name
+     * @param window
+     * @param model 
+     */
+    public AlternativeView(String  name, Window window, Model model) {
+        mName = name;
+        mWindow = window;
+        mModel = model;
+        
+    }
+    /**
+     *  功能檢查变量是否已经實例化
+     * @return 
+     */
+    public boolean isValid() {
+        return mIsValid;
+    }
+    /**
+     * 用IF 迴圈SHOW秀出AlternativeView:
+     * 多家EDUALS這段程式 讓她可以執行一次後 停止
+     */
+    public void show() {
+        if(!s.equals(mModel.getData())){
+        s = mModel.getData();
+        System.out.print("AlternativeView: ");
+        System.out.println(new StringBuilder(mModel.getData()).reverse());
+        mIsValid = true;
+    }
+    }
+   
+
+    @Override
+    /**
+     * 結束後 更新 
+     * 在一次執行SHOW
+     */
+    public void update() {
+        show();
+        //mIsValid = false;
+    }
+    }
+

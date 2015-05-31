@@ -34,7 +34,12 @@ import java.util.List;
  * @author Samael Wang <freesamael@gmail.com>
  */
 public class ObserverSample {
-
+/**
+ * @param args 
+ * Window,Model,Controller,ArrayList (new object)
+ * 使每個VIEW能註冊window 跟 model
+ * 再讓MODEL跑一次
+ */
     public static void main(String[] args) {
         // Initialize MVC and Window objects.
         Window window = new Window();
@@ -43,6 +48,10 @@ public class ObserverSample {
         Controller controller = new Controller(model);
         mInvalidViews.add(new AlternativeView("View ", window, model));
         // Start the event loop.
+        /**
+         * 用WHIKE   controller輸入的資料
+         * 再讓Observer更新
+         */
        while (true) {
             controller.readInput();
             

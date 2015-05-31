@@ -27,26 +27,22 @@ package tw.edu.npu.mis;
 
 /**
  * The domain model.
- *
- * @author Samael Wang <freesamael@gmail.com>
  */
 public class Model {
 
     private String mData;
 
     /**
-     * Get model content.
-     *
-     * @return {@link String}
+     *讀取model內容
+     * return {@link String}
      */
     public String getData() {
         return mData;
     }
 
     /**
-     * Update model.
-     *
-     * @param data A {@link String} data.
+     *更新model
+     * 停止data去{@link String} data.
      */
     public void setData(String data) {
         mData = data;

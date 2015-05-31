@@ -35,13 +35,23 @@ import java.util.List;
  */
 public class Subject {
      private List<Observer> mObservers = new ArrayList<>();
-    
+    /**
+     * @param o
+     * 讓 o 新增 observer ArrayList
+     */
     public void attach(Observer o) {
         mObservers.add(o);
     }
+    /**
+     * @param o 
+     * 讓 o 移除 observer ArrayList
+     */
     public void detach(Observer o) {
         mObservers.remove(o);
     }
+    /**]
+     * 讓 o 更新
+     */
     public void notifyObserver() {
         for (Observer o : mObservers){
             o.update();
