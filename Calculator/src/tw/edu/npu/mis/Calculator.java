@@ -5,11 +5,20 @@
  */
 package tw.edu.npu.mis;
 
+import java.util.Observable;
+
+
 /**
  * The model class of the calculator application.
- */
-public class Calculator {
-    
+ *//**
+  * 
+  * @author STP
+  * 
+  */
+public class Calculator extends Observable{
+    String mNb ="";//目前運算結果
+    String mRemeber;//判斷目前加減乘除
+    int x,y;//給予兩個值,計算用
     /**
      * The available operators of the calculator.
      */
@@ -32,29 +41,97 @@ public class Calculator {
         MEM_MINUS,   // M-
         MEM_RECALL   // MR
     }
-    
+    /**
+     * 這裏做數字的輸入，數字顯示
+     * @param digit 
+     */
     public void appendDigit(int digit) {
-        // TODO code application logic here
+      mNb += String.valueOf(digit);
+      getDisplay();   
     }
     
     public void appendDot() {
         // TODO code application logic here
     }
-    
+    /**
+     * * 所有運算方法加減乘除的地方
+     * @param operator 
+     */
     public void performOperation(Operator operator) {
+        switch(operator){
+        case PLUS:
+                x = Integer.parseInt(mNb);
+                mNb = "";
+                mRemeber = "+";      
+                break;
+        case MINUS:
+                x = Integer.parseInt(mNb);
+                mNb = "";
+                mRemeber = "-";
+        case TIMES:
+                x = Integer.parseInt(mNb);
+                mNb = "";
+                mRemeber = "*";
+        case OVER:
+                x = Integer.parseInt(mNb);
+                mNb = "";
+                mRemeber = "/";
+                      
+                break;
+                case EQUAL:
+                    if(mRemeber =="+")
+                    {
+                        y = Integer.parseInt(mNb);
+                        mNb = String.valueOf(x+y);
+                        getDisplay();
+                        mNb= "";
+                    }
+                     if(mRemeber =="-")
+                    {
+                        y = Integer.parseInt(mNb);
+                        mNb = String.valueOf(x-y);
+                        getDisplay();
+                        mNb= "";
+                    }
+                     if(mRemeber =="*")
+                    {
+                        y = Integer.parseInt(mNb);
+                        mNb = String.valueOf(x*y);
+                        getDisplay();
+                        mNb= "";
+                    }
+                     if(mRemeber =="/")
+                    {
+                        y = Integer.parseInt(mNb);
+                        mNb = String.valueOf(x/y);
+                        getDisplay();
+                        mNb= "";
+                    }
+                break;
+                   
+        }
         // TODO code application logic here
     }
-    
+    /**
+     * 更新回傳值
+     * @return 
+     */
     public String getDisplay() {
         // TODO code application logic here
-        return null;
+        setChanged();
+        notifyObservers(mNb);
+        return mNb;
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+   /**
+    * 依傳過來的運算符號來判斷執行哪一種運算符號的程式
+    * @param d 
+    */
+    public void process(String d)
+    {
+        if(d =="+") performOperation(Operator.PLUS);
+        if(d == "-") performOperation (Operator.MINUS);
+        if(d == "*") performOperation (Operator.TIMES);
+        if(d == "/") performOperation (Operator.OVER);
+        if(d =="=") performOperation(Operator.EQUAL);
     }
-
 }
