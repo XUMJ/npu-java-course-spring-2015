@@ -5,15 +5,15 @@
  */
 package tw.edu.npu.mis;
 
-import java.awt.event.ActionEvent;
+
 
 /**
  *
  * @author STP
  */
-public class Controller {
+public class Controller implements ControllerInterface {
     
-        private  Calculator  mCal;
+        private  Calculator  mCal ;
         private View mView;
         
         /**
@@ -32,8 +32,11 @@ public class Controller {
 		this.mView = v;
 	}
 
-   
-    public void actionPerformed(ActionEvent e) {
+    @Override
+    public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
+    
 }
