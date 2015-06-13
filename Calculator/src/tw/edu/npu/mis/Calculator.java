@@ -18,7 +18,8 @@ import java.util.Observable;
 public class Calculator extends Observable{
     String mNb ="";//目前運算結果
     String mRemeber;//判斷目前加減乘除
-    int x,y;//給予兩個值,計算用
+    String z ="0";
+    double x,y;//給予兩個值,計算用
     /**
      * The available operators of the calculator.
      */
@@ -68,45 +69,54 @@ public class Calculator extends Observable{
                 x = Integer.parseInt(mNb);
                 mNb = "";
                 mRemeber = "-";
+                break;
         case TIMES:
                 x = Integer.parseInt(mNb);
                 mNb = "";
                 mRemeber = "*";
+                break;
         case OVER:
                 x = Integer.parseInt(mNb);
                 mNb = "";
                 mRemeber = "/";
-                      
                 break;
+        case CLEAR:
+
+              getDisplay();
+              mNb = "";
+              mRemeber = "";
+              break;
+            
                 case EQUAL:
-                    if(mRemeber =="+")
+                    if("+".equals(mRemeber))
                     {
                         y = Integer.parseInt(mNb);
                         mNb = String.valueOf(x+y);
                         getDisplay();
                         mNb= "";
                     }
-                     if(mRemeber =="-")
+                     if("-".equals(mRemeber))
                     {
                         y = Integer.parseInt(mNb);
                         mNb = String.valueOf(x-y);
                         getDisplay();
                         mNb= "";
                     }
-                     if(mRemeber =="*")
+                     if("*".equals(mRemeber))
                     {
                         y = Integer.parseInt(mNb);
                         mNb = String.valueOf(x*y);
                         getDisplay();
                         mNb= "";
                     }
-                     if(mRemeber =="/")
+                     if("/".equals(mRemeber))
                     {
                         y = Integer.parseInt(mNb);
                         mNb = String.valueOf(x/y);
                         getDisplay();
                         mNb= "";
                     }
+                     
                 break;
                    
         }
@@ -128,10 +138,11 @@ public class Calculator extends Observable{
     */
     public void process(String d)
     {
-        if(d =="+") performOperation(Operator.PLUS);
-        if(d == "-") performOperation (Operator.MINUS);
-        if(d == "*") performOperation (Operator.TIMES);
-        if(d == "/") performOperation (Operator.OVER);
-        if(d =="=") performOperation(Operator.EQUAL);
+        if("+".equals(d)) performOperation(Operator.PLUS);
+        if("-".equals(d)) performOperation (Operator.MINUS);
+        if("*".equals(d)) performOperation (Operator.TIMES);
+        if("/".equals(d)) performOperation (Operator.OVER);
+        if("=".equals(d)) performOperation(Operator.EQUAL);
+        if("C".equals(d)) performOperation(Operator.CLEAR);
     }
 }
